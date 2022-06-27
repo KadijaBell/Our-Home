@@ -1,30 +1,29 @@
-const Task = require('../Models/calendar')
+const Task = require('../Models/Task')
+const task = [];
+const complete = [];
 
 
 
-let index = (req, res)=>{
-         res.render('index', {
-             title:'Welcome Home'
-            })
+// let index = (req, res)=>{
+//          res.render('index', {
+//              title:'Welcome Home'
+//             })
 
- }
+//  }
 
 
 
-let show = (req, res) => {
-    res.render('task')
+// let show = (req, res) => {
+//     res.render('/Views/task/task.ejs')
     
-}
+// }
 
-let create = (req,res) => {
-    console.log(req.body)
-        
-    res.render('views/newTask')
+function create (req, res) {
+    const createTask = req.body.createTask;
+       task.push(createTask)
+            res.redirect('/')
         }
 
-//         res.json({tsk, message:'Congrats Im Here'})
-//     })
-// }
 // let destroy = (req,res) => {
 //     Task.findByIdAndDelete(req.params.id, (err, tsk)=>{
 //         if(err){
@@ -54,10 +53,12 @@ let create = (req,res) => {
 //     Task
 // }
 
-module.exports = {
-    index,
-    show,
-    create,
+
+
+ module.exports = {
+//     index,
+//     show,
+ create
     // destroy,
     // update,
     //new,
