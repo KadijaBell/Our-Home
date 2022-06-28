@@ -8,7 +8,21 @@
     <title>Our Home</title>
 </head>
 <body>
-  
+    <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper">
+            <!-- Add login UI here -->
+            <ul class="right">
+              <li>
+              <% if (task) { %>
+                <a href="/logout"><i class="material-icons right">trending_flat</i>Log Out</a>
+              <% } else { %>
+                <a href="/auth/google"><i class="material-icons right">vpn_key</i>Login with Google</a>
+              <% } %>
+              </li>
+            </ul>
+          </div>
+        </nav>
     <div class="container">
         <h2> Could You Please......</h2>
 

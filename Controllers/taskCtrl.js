@@ -3,27 +3,37 @@ const task = [];
 const complete = [];
 
 
-
-// let index = (req, res)=>{
-//          res.render('index', {
-//              title:'Welcome Home'
-//             })
-
-//  }
-
-
+function index(req, res, next) {
+    console.log(req.query)
+  
+    let modelQuery = req.query.name ? {name: new RegExp(req.query.name, 'i')} : {};
+    // Default to sorting by name
+    let sortKey = req.query.sort || 'name';
+    Task.find(modelQuery)
+    .sort(sortKey).exec(function(err, students) {
+      if (err) return next(err);
+      res.render('task', {
+        tasks,
+        user: req.user,
+        name: req.query.name,
+        sortKey
+      });
+    });
+  }
+  
 
 // let show = (req, res) => {
 //     res.render('/Views/task/task.ejs')
     
 // }
-
-function create (req, res) {
+let createTasks = (req, res) => {
     const createTask = req.body.createTask;
-       task.push(createTask)
-            res.redirect('/')
-        }
+    //add the new task from the post route
+    task.push(createTask);
+    res.redirect("/");
+}
 
+        
 // let destroy = (req,res) => {
 //     Task.findByIdAndDelete(req.params.id, (err, tsk)=>{
 //         if(err){
@@ -56,9 +66,10 @@ function create (req, res) {
 
 
  module.exports = {
-//     index,
+  index,
 //     show,
- create
+createTasks,
+
     // destroy,
     // update,
     //new,

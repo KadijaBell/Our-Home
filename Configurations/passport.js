@@ -2,6 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const Task = require('../Models/Task');
 
+//Swap task for user
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_SECRET,
@@ -10,7 +11,7 @@ passport.use(new GoogleStrategy({
   function(accessToken, refreshToken, profile, cb) {
     Task.findOne({ 'googleId': profile.id }, function(err, task) {
       if (err) return cb(err);
-      if (task) {
+      if () {
           if(!student.avatar){
         task.avatar = profile.photo[0].value;
         task.save(function(err){

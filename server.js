@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 const PORT = 4001; 
 const taskRoutes = require ('./Routes/taskRouter');
-//const homeRoutes = require ('./Routes/homeRouter');
+const loginRoutes = require ('./Routes/loginRouter.js');
 const bodyParser = require("body-parser");
 const session = require('express-session');
 const passport = require('passport');
@@ -16,9 +16,10 @@ require('dotenv').config();
  require('./Configurations/passport')
 
  //routes
- app.use ('/', taskRoutes)
-// app.use('/', homeRoutes)
-
+//  app.use ('/', taskRoutes)
+//  app.use('/', homeRoutes)
+ app.use ('/', loginRoutes); //go to login view when navigating to endpoint our-home.com/
+ app.use ('/', taskRoutes); //after correct login go todolist navigating to endpoint our-home.com/tasks
 
 app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
@@ -50,13 +51,13 @@ app.use(passport.session());
 const task = [];
 const complete = [];
 
-//post route for adding new task 
- app.post('/add', function(req, res) {
-    const createTask = req.body.createTask;
-    //add the new task from the post route
-    task.push(createTask);
-    res.redirect("/");
-});
+// //post route for adding new task 
+//  app.post('/add', function createTask (req, res) {
+//     const createTask = req.body.createTask;
+//     //add the new task from the post route
+//     task.push(createTask);
+//     res.redirect("/");
+// });
 
 app.post("/removetask", function(req, res) {
     const completeTask = req.body.check;
