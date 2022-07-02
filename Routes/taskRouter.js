@@ -8,6 +8,10 @@ const complete = [];
 
 
 
+router.get('/task', function(req, res) {
+    res.render('task');
+  });
+
  
 
 //post route for adding new task 
