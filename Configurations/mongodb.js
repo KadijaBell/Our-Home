@@ -1,12 +1,10 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-//connect to database
-mongoose.connect('mongodb://localhost:27017/OurHome', {
-    useNewUrlParser: true
-})
+mongoose.connect(process.env.DATABASE_URL);
 
-const db = mongoose.connection
+const db = mongoose.connection;
 
-db.on('connected', () => {
-    console.log(`Connected to MongoDB at ${db.host}:${db.port}`)
-})
+// database connection event
+db.on('connected', function () {
+  console.log(`Mongoose connected to: ${db.host}:${db.port}`);
+});
